@@ -1,0 +1,46 @@
+
+<mat-form-field appearance="fill">
+  <mat-label>Ordenar por:</mat-label>
+  <mat-select [(ngModel)]="order" (selectionChange)="orderBy()" >
+    <mat-option value="name">Nombre</mat-option>
+    <mat-option value="order">Número</mat-option>
+    <mat-option value="type">Tipo</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Buscar</mat-label>
+  <input matInput name="filter" [(ngModel)]="filter" (ngModelChange)="search()">
+</mat-form-field>
+
+<div class="pokemon-grid">
+  <div class="box" *ngFor="let pokemon of filteredPokemons | paginate: { itemsPerPage: 20, currentPage: page}">
+    <h3>#{{ pokemon.order }} {{ pokemon.name | titlecase}}</h3>
+    <img [src]="pokemon.sprites.front_default" alt="Pokemon image">
+    <p>
+      <img [src]="'assets/img/' + pokemon.types[0].type.name + '.gif'">
+      <img *ngIf="pokemon.types[1] != null" [src]="'assets/img/' + pokemon.types[1]?.type.name + '.gif'">
+    </p>
+    <p>
+      <b>Altura:</b> {{ pokemon.height / 10}} m
+    </p>
+    <p>
+      <b>Peso:</b> {{ pokemon.weight / 10 }} Kg
+    </p>
+    <p>
+      <b>HP:</b> {{ pokemon.stats[0].base_stat }}
+    </p>
+    <p>
+      <b>Ataque:</b> {{ pokemon.stats[1].base_stat }}
+    </p>
+    <p>
+      <b>Defensa:</b> {{ pokemon.stats[2].base_stat }}
+    </p>
+
+    <button mat-button (click)="deletePokemon(pokemon.order)">Eliminar</button>
+
+
+  </div>
+</div>
+
+<pagination-controls (pageChange)="page = $event;"></pagination-controls>

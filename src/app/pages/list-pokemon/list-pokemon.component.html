@@ -1,4 +1,4 @@
-
+<div class="header">
 <mat-form-field appearance="fill">
   <mat-label>Ordenar por:</mat-label>
   <mat-select [(ngModel)]="order" (selectionChange)="orderBy()" >
@@ -12,6 +12,7 @@
   <mat-label>Buscar</mat-label>
   <input matInput name="filter" [(ngModel)]="filter" (ngModelChange)="search()">
 </mat-form-field>
+</div>
 
 <div class="pokemon-grid">
   <div class="box" *ngFor="let pokemon of filteredPokemons | paginate: { itemsPerPage: 20, currentPage: page}">
@@ -19,7 +20,7 @@
     <img [src]="pokemon.sprites.front_default" alt="Pokemon image">
     <p>
       <img [src]="'assets/img/' + pokemon.types[0].type.name + '.gif'">
-      <img *ngIf="pokemon.types[1] != null" [src]="'assets/img/' + pokemon.types[1]?.type.name + '.gif'">
+      <img *ngIf="pokemon.types[1] != null" [src]="'assets/img/' + pokemon.types[1].type.name + '.gif'">
     </p>
     <p>
       <b>Altura:</b> {{ pokemon.height / 10}} m

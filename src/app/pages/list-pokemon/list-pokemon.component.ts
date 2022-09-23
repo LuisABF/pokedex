@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokedex, PokedexResult, Pokemon} from 'src/app/models/pokedex';
 import { PokemonService } from 'src/app/services/pokemon.service';
 
 @Component({
@@ -7,15 +8,19 @@ import { PokemonService } from 'src/app/services/pokemon.service';
   styleUrls: ['./list-pokemon.component.css']
 })
 export class ListPokemonComponent implements OnInit {
-  pokemons: any[] = [];
-  filteredPokemons: any[] = [];
-  page: number = 1;
-  filter: string = '';
-  order: string = 'order';
+  pokemons: Pokemon[] = [];
+  filteredPokemons: Pokemon[] = [];
+  page: number;
+  filter: string;
+  order: string;
 
   constructor(
     private pokemonService: PokemonService
-  ) { }
+  ) { 
+    this.filter = '';
+    this.page  = 1;
+    this.order = 'order';
+   }
 
   ngOnInit() {
     this.getAllpokemon()
@@ -23,14 +28,13 @@ export class ListPokemonComponent implements OnInit {
 
   getAllpokemon() {
     this.pokemonService.getAllpokemon()
-    .subscribe((response: any) => {
-      response.results.forEach((result: any) => {
-        this.pokemonService.getMorePokemon(result.name).subscribe((responsePokemon: any) => {
+    .subscribe((response: Pokedex) => {
+      response.results.forEach(async (result: PokedexResult) => {
+        await this.pokemonService.getMorePokemon(result.name).subscribe((responsePokemon: Pokemon) => {
           this.pokemons.push(responsePokemon);
           this.filteredPokemons.push(responsePokemon);
         })
       });
-
     });
   }
 

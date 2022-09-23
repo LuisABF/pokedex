@@ -23,23 +23,20 @@ Description: Application made to list the first 151 pokemons - Angular
 
 
 ### Project structure
-
-
-.
-   ├── app                                                         # Main application folder
-        ├── pages                                                  # Here are all components
-            ├── list-pokemon
-                ├── list-pokemon.component.css
-                ├── list-pokemon.component.html
-                ├── list-pokemon.component.ts  
-        ├── models                                                  # Here are all interfaces and clases of the app
-            ├── pokedex.ts
-        ├── service                                                 # Here are the services a methods  
-            ├── global.service.ts
-            ├── pokemon.service.ts
-    ├── assets                                                      # Here are all static files like images, fonts and styles
+    .
+    ├── app           # Main application folder
+    ├── pages         # Here are all components
+        ├── list-pokemon
+            ├── list-pokemon.component.css
+            ├── list-pokemon.component.html
+            ├── list-pokemon.component.ts  
+    ├── models        # Here are all interfaces and clases
+        ├── pokedex.ts
+    ├── service       # Here are the services a methods
+        ├── global.service.ts
+        ├── pokemon.service.ts
+    ├── assets  # Here are all static files like images
         ├── img
-
 
 
 ## Get Started

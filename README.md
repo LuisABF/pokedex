@@ -25,7 +25,7 @@ Description: Application made to list the first 151 pokemons - Angular
 ### Project structure
 
 
-
+.
    ├── app                                                         # Main application folder
         ├── pages                                                  # Here are all components
             ├── list-pokemon
